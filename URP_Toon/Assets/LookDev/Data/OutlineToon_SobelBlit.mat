@@ -91,7 +91,7 @@ Material:
     - _ColorThreshold: 0.01
     - _Cull: 2
     - _Cutoff: 0.5
-    - _Delta: 0.0005
+    - _Delta: 0.00058
     - _DeltaX: 0.002
     - _DeltaY: 0.002
     - _DstBlend: 0

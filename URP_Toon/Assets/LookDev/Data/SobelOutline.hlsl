@@ -100,19 +100,19 @@ void Outline_float(float2 UV, float OutlineThickness, float DepthSensitivity, fl
 	// 水平方向のコンボリューション行列適用後の色を求める
 	half3 horizontalColor = 0;
 	horizontalColor += SAMPLE_TEXTURE2D(_CameraColorTexture, sampler_CameraColorTexture, uvSamples[0]) * -1.0;
-	horizontalColor += SAMPLE_TEXTURE2D(_CameraColorTexture, sampler_CameraColorTexture, uvSamples[1]) * -2.0;
+	horizontalColor += SAMPLE_TEXTURE2D(_CameraColorTexture, sampler_CameraColorTexture, uvSamples[1]) * -1.0;
 	horizontalColor += SAMPLE_TEXTURE2D(_CameraColorTexture, sampler_CameraColorTexture, uvSamples[2]) * -1.0;
 	horizontalColor += SAMPLE_TEXTURE2D(_CameraColorTexture, sampler_CameraColorTexture, uvSamples[5]);
-	horizontalColor += SAMPLE_TEXTURE2D(_CameraColorTexture, sampler_CameraColorTexture, uvSamples[6]) * 2.0;
+	horizontalColor += SAMPLE_TEXTURE2D(_CameraColorTexture, sampler_CameraColorTexture, uvSamples[6]) * 1.0;
 	horizontalColor += SAMPLE_TEXTURE2D(_CameraColorTexture, sampler_CameraColorTexture, uvSamples[7]);
 
 	// 垂直方向のコンボリューション行列適用後の色を求める
 	half3 verticalColor = 0;
 	verticalColor += SAMPLE_TEXTURE2D(_CameraColorTexture, sampler_CameraColorTexture, uvSamples[0]);
-	verticalColor += SAMPLE_TEXTURE2D(_CameraColorTexture, sampler_CameraColorTexture, uvSamples[3]) * 2.0;
+	verticalColor += SAMPLE_TEXTURE2D(_CameraColorTexture, sampler_CameraColorTexture, uvSamples[3]) * 1.0;
 	verticalColor += SAMPLE_TEXTURE2D(_CameraColorTexture, sampler_CameraColorTexture, uvSamples[6]);
 	verticalColor += SAMPLE_TEXTURE2D(_CameraColorTexture, sampler_CameraColorTexture, uvSamples[2]) * -1.0;
-	verticalColor += SAMPLE_TEXTURE2D(_CameraColorTexture, sampler_CameraColorTexture, uvSamples[5]) * -2.0;
+	verticalColor += SAMPLE_TEXTURE2D(_CameraColorTexture, sampler_CameraColorTexture, uvSamples[5]) * -1.0;
 	verticalColor += SAMPLE_TEXTURE2D(_CameraColorTexture, sampler_CameraColorTexture, uvSamples[7]) * -1.0;
 
 
@@ -145,5 +145,6 @@ void Outline_float(float2 UV, float OutlineThickness, float DepthSensitivity, fl
 	///float edge = edgeColor;
 	float4 original = SAMPLE_TEXTURE2D(_CameraColorTexture, sampler_CameraColorTexture, uvSamples[0]);
 	//Out = SAMPLE_TEXTURE2D(_OutlineMaskTexture, sampler_OutlineMaskTexture, uvSamples[0]);//((1 - edge) * original) + (edge * lerp(original, OutlineColor, OutlineColor.a));
-	Out =float4(edgeColor, edgeColor, edgeColor,1);
+	//Out =float4(edgeColor, edgeColor, edgeColor,1);
+	Out = ((1 - edgeColor) * original) + (edgeColor * lerp(original, OutlineColor, OutlineColor.a));
 }

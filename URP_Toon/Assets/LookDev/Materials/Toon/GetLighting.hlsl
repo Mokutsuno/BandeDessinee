@@ -1,22 +1,33 @@
-void MainLight_float(float3 WorldPos, out half3 Direction, out half3 Color, out half Attenuation)
+//#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Shadows.hlsl"
+#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
+#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
+
+
+void MainLight_float(float3 WorldPos, out float3 Direction, out float3 Color, out float Attenuation)
 {
-#if SHADERGRAPH_PREVIEW
-	Direction = half3(0.5, 0.5, 0);
+#ifdef SHADERGRAPH_PREVIEW
+	Direction = float3(0.5, 0.5, 0);
 	Color = 1;
 	Attenuation = 1;
+
 #else
-#if SHADOWS_SCREEN
-	half4 clipPos = TransformWorldToHClip(WorldPos);
-	half4 shadowCoord = ComputeScreenPos(clipPos);
-#else
-	half4 shadowCoord = TransformWorldToShadowCoord(WorldPos);
-#endif
+	#if SHADOWS_SCREEN
+		float4 clipPos = TransformWorldToHClip(WorldPos);
+		float4 shadowCoord = ComputeScreenPos(clipPos);
+	#else
+
+		float4 shadowCoord = TransformWorldToShadowCoord(WorldPos);
+	#endif
 	Light mainLight = GetMainLight(shadowCoord);
 	Direction = mainLight.direction;
 	Color = mainLight.color;
 	Attenuation = mainLight.distanceAttenuation * mainLight.shadowAttenuation;
-#endif
-#ifdef _ADDITIONAL_LIGHTS
+	
+	#if !defined(_MAIN_LIGHT_SHADOWS) || defined(_RECEIVE_SHADOWS_OFF)
+	//ShadowAtten = 1.0h;
+	#endif
+	
+	#ifdef _ADDITIONAL_LIGHTS
     uint pixelLightCount = GetAdditionalLightsCount();
     for (uint lightIndex = 0u; lightIndex < pixelLightCount; ++lightIndex)
     {
@@ -25,5 +36,6 @@ void MainLight_float(float3 WorldPos, out half3 Direction, out half3 Color, out 
 	Color += light.color ;        
 	Attenuation += light.distanceAttenuation * light.shadowAttenuation;
 	   }
+	#endif
 #endif
 }

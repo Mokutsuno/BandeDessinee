@@ -1,3 +1,8 @@
+//////////////////////////////////
+//参考 https://blog.siliconstudio.co.jp/2021/05/960/
+/////////////////////
+
+
 TEXTURE2D(_CameraColorTexture);
 SAMPLER(sampler_CameraColorTexture);
 float4 _CameraColorTexture_TexelSize;
@@ -5,8 +10,8 @@ float4 _CameraColorTexture_TexelSize;
 TEXTURE2D(_CameraDepthTexture);
 SAMPLER(sampler_CameraDepthTexture);
 
-TEXTURE2D(_CameraDepthNormalsTexture);
-SAMPLER(sampler_CameraDepthNormalsTexture);
+TEXTURE2D(_CameraNormalsTexture);
+SAMPLER(sampler_CameraNormalsTexture);
 
 TEXTURE2D(_OutlineMaskTexture);
 SAMPLER(sampler_OutlineMaskTexture);
@@ -32,9 +37,9 @@ float3 DecodeNormal(float4 enc)
 
 void Outline_float(float2 UV, float OutlineThickness, float DepthSensitivity, float NormalsSensitivity, float ColorSensitivity, float4 OutlineColor, out float4 Out)
 {
-	//float halfScaleFloor = floor(OutlineThickness * 0.5);
-	//float halfScaleCeil = ceil(OutlineThickness * 0.5);
-	//float2 Texel = (1.0) / float2(_CameraColorTexture_TexelSize.z, _CameraColorTexture_TexelSize.w);
+	float halfScaleFloor = floor(OutlineThickness * 0.5);
+	float halfScaleCeil = ceil(OutlineThickness * 0.5);
+	float2 Texel = (1.0) / float2(_CameraColorTexture_TexelSize.z, _CameraColorTexture_TexelSize.w);
 
 	float2 uvSamples[8];
 	float depthSamples[8];
@@ -64,15 +69,15 @@ void Outline_float(float2 UV, float OutlineThickness, float DepthSensitivity, fl
 
 	for (int i = 0; i < 8; i++)
 	{
-		/*
+		
 		depthVColor += SAMPLE_TEXTURE2D(_CameraDepthTexture, sampler_CameraDepthTexture, uvSamples[i]).r * vCoef[i];
-		normalVColor += DecodeNormal(SAMPLE_TEXTURE2D(_CameraDepthNormalsTexture, sampler_CameraDepthNormalsTexture, uvSamples[i])) * vCoef[i];
+		normalVColor += DecodeNormal(SAMPLE_TEXTURE2D(_CameraNormalsTexture, sampler_CameraNormalsTexture, uvSamples[i])) * vCoef[i];
 		colorVColor += SAMPLE_TEXTURE2D(_CameraColorTexture, sampler_CameraColorTexture, uvSamples[i]) * vCoef[i];
 		
 		depthHColor += SAMPLE_TEXTURE2D(_CameraDepthTexture, sampler_CameraDepthTexture, uvSamples[i]).r * hCoef[i];
-		normalHColor += DecodeNormal(SAMPLE_TEXTURE2D(_CameraDepthNormalsTexture, sampler_CameraDepthNormalsTexture, uvSamples[i])) * hCoef[i];
+		normalHColor += DecodeNormal(SAMPLE_TEXTURE2D(_CameraNormalsTexture, sampler_CameraNormalsTexture, uvSamples[i])) * hCoef[i];
 		colorHColor += SAMPLE_TEXTURE2D(_CameraColorTexture, sampler_CameraColorTexture, uvSamples[i]) * hCoef[i];
-		*/
+
 
 	}
 
@@ -123,7 +128,7 @@ void Outline_float(float2 UV, float OutlineThickness, float DepthSensitivity, fl
 	float outlineValue = sqrt(horizontalColorDepth * horizontalColorDepth + verticalColorDepth * verticalColorDepth)*100;
 	float edgeDepth = outlineValue;
 	edgeDepth = edgeDepth > depthThreshold ? 1 : 0;
-	/*
+	
 	// Normals
 	float3 normalFiniteDifference0 = normalSamples[1] - normalSamples[0];
 	float3 normalFiniteDifference1 = normalSamples[3] - normalSamples[2];
@@ -133,18 +138,19 @@ void Outline_float(float2 UV, float OutlineThickness, float DepthSensitivity, fl
 	// Color
 	float3 colorFiniteDifference0 = colorSamples[1] - colorSamples[0];
 	float3 colorFiniteDifference1 = colorSamples[3] - colorSamples[2];
-	float edgeColor = sqrt(dot(colorFiniteDifference0, colorFiniteDifference0) + dot(colorFiniteDifference1, colorFiniteDifference1));
+    //float4 sobelH = horizontalColor * horizontalColor + verticalColor * verticalColor;
+    float sobel = sqrt(dot(colorFiniteDifference0, colorFiniteDifference0) + dot(colorFiniteDifference1, colorFiniteDifference1));
 	
-	*/
+	
 	half3 edgeColorRGB = horizontalColor * horizontalColor + verticalColor * verticalColor;
-	float edgeColor = max(edgeColorRGB.r, max(edgeColorRGB.g, edgeColorRGB.b));
-	edgeColor = edgeColor > (1 / ColorSensitivity) ? 1 : 0;
+	//float edgeColor = max(edgeColorRGB.r, max(edgeColorRGB.g, edgeColorRGB.b));
+    sobel = edgeColorRGB > (1 / ColorSensitivity) ? 1 : 0; //閾値でイチゼロに　21/01/7
 
 	//float edgeColor = max(edgeDepth, max(edgeNormal, edgeColor));
 	
 	///float edge = edgeColor;
 	float4 original = SAMPLE_TEXTURE2D(_CameraColorTexture, sampler_CameraColorTexture, uvSamples[0]);
 	//Out = SAMPLE_TEXTURE2D(_OutlineMaskTexture, sampler_OutlineMaskTexture, uvSamples[0]);//((1 - edge) * original) + (edge * lerp(original, OutlineColor, OutlineColor.a));
-	//Out =float4(edgeColor, edgeColor, edgeColor,1);
-	Out = ((1 - edgeColor) * original) + (edgeColor * lerp(original, OutlineColor, OutlineColor.a));
+    Out = float4(sobel, sobel, sobel, 1);
+	//Out = ((1 - edgeColor) * original) + (edgeColor * lerp(original, OutlineColor, OutlineColor.a));
 }

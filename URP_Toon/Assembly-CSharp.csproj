@@ -74,6 +74,7 @@
     <None Include="Assets\LookDev\Materials\Toon\NewSurfaceShader.shader" />
     <None Include="Assets\LookDev\Shaders\BDLit.hlsl" />
     <None Include="Assets\LookDev\Shaders\Hatching.shader" />
+    <None Include="Assets\LookDev\Data\SobelOutline2.hlsl" />
     <None Include="Assets\LookDev\Data\SobelFilter.shader" />
     <None Include="Assets\LookDev\Data\OutlineMask.shader" />
     <None Include="Assets\LookDev\Data\CustomLit.shader" />

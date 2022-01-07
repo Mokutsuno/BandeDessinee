@@ -1,3 +1,7 @@
+
+///////////////////////////////////////
+////	RobertsCross•û®‚ç‚µ‚¢ 21/01/07
+///////////////////////////////////////
 TEXTURE2D(_CameraColorTexture);
 SAMPLER(sampler_CameraColorTexture);
 float4 _CameraColorTexture_TexelSize;
@@ -24,8 +28,8 @@ float3 DecodeNormal(float4 enc)
 
 void Outline_float(float2 UV, float OutlineThickness, float DepthSensitivity, float NormalsSensitivity, float ColorSensitivity, float4 OutlineColor, out float4 Out)
 {
-	float halfScaleFloor = floor(OutlineThickness * 0.5);
-	float halfScaleCeil = ceil(OutlineThickness * 0.5);
+    float halfScaleFloor = floor(OutlineThickness * 0.5); //‘½•ªthickness‚ğ®”‚ÉŠÛ‚ß‚Ä‚¢‚é
+	float halfScaleCeil = ceil(OutlineThickness * 0.5);	//‘½•ªthickness‚ğ®”‚ÉŠÛ‚ß‚Ä‚¢‚é
 	float2 Texel = (1.0) / float2(_CameraColorTexture_TexelSize.z, _CameraColorTexture_TexelSize.w);
 
 	float2 uvSamples[4];

@@ -1,10 +1,13 @@
-//#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Shadows.hlsl"
+
+//#include "Assets/LookDev/Data/Shadows.hlsl"
 #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
 #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
-
+#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Shadows.hlsl"
 
 void MainLight_float(float3 WorldPos, out float3 Direction, out float3 Color, out float Attenuation)
 {
+	    #pragma multi_compile _ _MAIN_LIGHT_SHADOWS
+#pragma multi_compile _ _MAIN_LIGHT_SHADOWS_CASCADE
 #ifdef SHADERGRAPH_PREVIEW
 	Direction = float3(0.5, 0.5, 0);
 	Color = 1;

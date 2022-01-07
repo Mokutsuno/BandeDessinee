@@ -42,7 +42,7 @@ ZWrite On
        //     #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
 
 
-                TEXTURE2D(_MainTex);
+            TEXTURE2D(_MainTex);
             SAMPLER(sampler_MainTex);
             float4 _ShadowColor;
             float _ClampThreshold;
@@ -50,6 +50,23 @@ ZWrite On
                 float4 _MainTex_ST;
             CBUFFER_END
 
+
+
+
+                struct BDAttributes
+            {
+                float4 positionOS : POSITION;
+                float3 normalOS : NORMAL;
+                float2 uv : TEXCOORD0;
+            };
+
+            struct BDVaryings
+            {
+                float4 positionCS : SV_POSITION;
+                float3 positionWS : TEXCOORD8; //POSITIONÇæÇ∆ÉGÉâÅ[ãNÇ´ÇÈÇÃÇ≈TEXCOORDÇ≈ébíËëŒèà
+                float2 uv : TEXCOORD0;
+                float3 normalWS : TEXCOORD1;
+            };
 
 
             
@@ -75,11 +92,11 @@ ZWrite On
                float3 Color;
                float ShadowAttenuation;
                float LitShadAttenuation;
-               GetToonLit(input.normalWS,input.positionWS, Direction, 0.5,Color, ShadowAttenuation, LitShadAttenuation);
+               GetToonLit(input.normalWS,input.positionWS, 0.5, Direction,Color, ShadowAttenuation, LitShadAttenuation);
                float4 albedoColor = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, input.uv); //tex2d
                float4 shadowTexColor = albedoColor*_ShadowColor;
                float4 output = lerp(albedoColor, shadowTexColor, LitShadAttenuation);
-              // output = LitShadAttenuation;
+              // output = float4(ShadowAttenuation, ShadowAttenuation, ShadowAttenuation,1);
                // MainLight_float(input.positionWS, Direction, Color, Attenuation);    //MainLight_float(float3 WorldPos, out half3 Direction, out half3 Color, out half Attenuation)
                return  output;
            //return tex2D(_MainTex, input.uv) * mask;
@@ -125,6 +142,24 @@ HLSLPROGRAM
 ENDHLSL
 }
 
+Pass
+{
+    Name "ShadowCaster"
+    Tags {"LightMode" = "ShadowCaster" }
+
+    ZWrite On
+    ZTest LEqual
+    ColorMask 0
+
+    HLSLPROGRAM
+    #pragma exclude_renderers gles gles3 glcore
+    #pragma target 4.5
+    #pragma vertex ShadowPassVertex
+    #pragma fragment ShadowPassFragment
+    #include "Packages/com.unity.render-pipelines.universal/Shaders/LitInput.hlsl"
+    #include "Packages/com.unity.render-pipelines.universal/Shaders/ShadowCasterPass.hlsl"
+    ENDHLSL
+}
 
 Pass
         {

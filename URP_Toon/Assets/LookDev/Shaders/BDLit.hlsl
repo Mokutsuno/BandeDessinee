@@ -1,10 +1,14 @@
 #include "Assets/LookDev/Materials/Toon/GetLighting.hlsl"
+
+#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
 #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
 
 
-void GetToonLit(float3 WorldNormal,float3 WorldPos,  float3 Direction,float Threshold, out float3 Color, out float ShadowAttenuation, out float LitShadAttenuation)
+void GetToonLit(float3 WorldNormal, float3 WorldPos,float Threshold ,out float3 Direction, out float3 Color, out float ShadowAttenuation, out float LitShadAttenuation)
 {
     Light mainLight = GetMainLight();
+
+    
     float strength = dot(mainLight.direction, WorldNormal);
     float oneminusStrength = -1 * (strength - 1);
                 
@@ -15,41 +19,21 @@ void GetToonLit(float3 WorldNormal,float3 WorldPos,  float3 Direction,float Thre
     t = max(0, t);
                 //---------------------------------
 
-                // カメラとオブジェクトの距離(長さ)を取得
-                // _WorldSpaceCameraPos：定義済の値　ワールド座標系のカメラの位置
-    float cameraToObjLength = length(_WorldSpaceCameraPos - WorldPos);
                //float shadowAttenuation;
                    //float shadowAttenuation;
                
     MainLight_float(WorldPos, Direction, Color, ShadowAttenuation);
     LitShadAttenuation = step(ShadowAttenuation * t, Threshold);
-
+    
 }
 //
-
-
-
-struct BDAttributes
-{
-    float4 positionOS : POSITION;
-    float3 normalOS : NORMAL;
-    float2 uv : TEXCOORD0;
-};
-
-struct BDVaryings
-{
-    float4 positionCS : SV_POSITION;
-    float3 positionWS : TEXCOORD8; //POSITIONだとエラー起きるのでTEXCOORDで暫定対処
-    float2 uv : TEXCOORD0;
-    float3 normalWS : TEXCOORD1;
-};
 
 
 /////////////////////////////////////////////
 ///////// Depth Normal pass         /////////
 ///////////////////////////////////////////////
             #include "Packages/com.unity.render-pipelines.universal/Shaders/LitInput.hlsl"
-            #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
+
             #include "Packages/com.unity.render-pipelines.universal/Shaders/LitForwardPass.hlsl"
             Varyings DepthNormalsVertex(Attributes input)
             {

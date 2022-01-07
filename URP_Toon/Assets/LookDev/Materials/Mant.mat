@@ -8,13 +8,13 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Mant
-  m_Shader: {fileID: -6465566751694194690, guid: b9c66dfb3b444eb4ba48dc8b651e845f,
+  m_Shader: {fileID: -6465566751694194690, guid: ab26db08f8869664bbcbde946467483a,
     type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 2000
+  m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
@@ -66,7 +66,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - Vector1_8EA3DDAF: 1
-    - Vector1_9EB1F4CE: 0.5
+    - Vector1_9EB1F4CE: 0.9
     - Vector1_A1FB5096: 0.73
     - Vector1_FF6ACC76: 0.84
     - _AlphaClip: 0

@@ -15,11 +15,11 @@ D:/Project_Mark2/Project2022/BandeDessinee/URP_Toon
 -logFile
 Logs/AssetImportWorker0.log
 -srvPort
-57165
+62491
 Successfully changed project path to: D:/Project_Mark2/Project2022/BandeDessinee/URP_Toon
 D:/Project_Mark2/Project2022/BandeDessinee/URP_Toon
 Using Asset Import Pipeline V2.
-Refreshing native plugins compatible for Editor in 35.73 ms, found 2 plugins.
+Refreshing native plugins compatible for Editor in 40.15 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2020.3.25f1 (9b9180224418)
 [Subsystems] Discovering subsystems at path D:/ProgramFiles_D/Unity/2020.3.25f1/Editor/Data/Resources/UnitySubsystems
@@ -35,72 +35,72 @@ Initialize mono
 Mono path[0] = 'D:/ProgramFiles_D/Unity/2020.3.25f1/Editor/Data/Managed'
 Mono path[1] = 'D:/ProgramFiles_D/Unity/2020.3.25f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
 Mono config path = 'D:/ProgramFiles_D/Unity/2020.3.25f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56612
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56112
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: D:/ProgramFiles_D/Unity/2020.3.25f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Registered in 0.000840 seconds.
+Registered in 0.000817 seconds.
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 38.00 ms, found 2 plugins.
+Refreshing native plugins compatible for Editor in 38.45 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  0.389 seconds
+- Completed reload, in  0.380 seconds
 Domain Reload Profiling:
-	ReloadAssembly (389ms)
-		BeginReloadAssembly (39ms)
+	ReloadAssembly (380ms)
+		BeginReloadAssembly (36ms)
 			ExecutionOrderSort (0ms)
 			DisableScriptedObjects (0ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
 			CreateAndSetChildDomain (1ms)
-		EndReloadAssembly (304ms)
-			LoadAssemblies (39ms)
+		EndReloadAssembly (300ms)
+			LoadAssemblies (35ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (94ms)
+			SetupTypeCache (91ms)
 			ReleaseScriptCaches (0ms)
-			RebuildScriptCaches (18ms)
-			SetupLoadedEditorAssemblies (123ms)
+			RebuildScriptCaches (17ms)
+			SetupLoadedEditorAssemblies (127ms)
 				LogAssemblyErrors (0ms)
 				InitializePlatformSupportModulesInManaged (3ms)
 				SetLoadedEditorAssemblies (0ms)
-				RefreshPlugins (38ms)
+				RefreshPlugins (39ms)
 				BeforeProcessingInitializeOnLoad (11ms)
-				ProcessInitializeOnLoadAttributes (53ms)
-				ProcessInitializeOnLoadMethodAttributes (18ms)
+				ProcessInitializeOnLoadAttributes (54ms)
+				ProcessInitializeOnLoadMethodAttributes (21ms)
 				AfterProcessingInitializeOnLoad (0ms)
 				EditorAssembliesLoaded (0ms)
 			ExecutionOrderSort2 (0ms)
 			AwakeInstancesAfterBackupRestoration (0ms)
 Platform modules already initialized, skipping
 Registering precompiled user dll's ...
-Registered in 0.003032 seconds.
+Registered in 0.003063 seconds.
 Begin MonoManager ReloadAssembly
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 41.28 ms, found 2 plugins.
+Refreshing native plugins compatible for Editor in 40.45 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  0.760 seconds
+- Completed reload, in  0.723 seconds
 Domain Reload Profiling:
-	ReloadAssembly (761ms)
-		BeginReloadAssembly (101ms)
+	ReloadAssembly (724ms)
+		BeginReloadAssembly (91ms)
 			ExecutionOrderSort (0ms)
-			DisableScriptedObjects (4ms)
+			DisableScriptedObjects (3ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (16ms)
-		EndReloadAssembly (622ms)
-			LoadAssemblies (67ms)
+			CreateAndSetChildDomain (14ms)
+		EndReloadAssembly (596ms)
+			LoadAssemblies (64ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (201ms)
+			SetupTypeCache (195ms)
 			ReleaseScriptCaches (0ms)
-			RebuildScriptCaches (32ms)
-			SetupLoadedEditorAssemblies (244ms)
+			RebuildScriptCaches (29ms)
+			SetupLoadedEditorAssemblies (237ms)
 				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (3ms)
+				InitializePlatformSupportModulesInManaged (2ms)
 				SetLoadedEditorAssemblies (0ms)
 				RefreshPlugins (41ms)
-				BeforeProcessingInitializeOnLoad (64ms)
-				ProcessInitializeOnLoadAttributes (128ms)
+				BeforeProcessingInitializeOnLoad (63ms)
+				ProcessInitializeOnLoadAttributes (122ms)
 				ProcessInitializeOnLoadMethodAttributes (6ms)
 				AfterProcessingInitializeOnLoad (2ms)
 				EditorAssembliesLoaded (0ms)
@@ -110,14 +110,14 @@ Platform modules already initialized, skipping
 ========================================================================
 Worker process is ready to serve import requests
 Launched and connected shader compiler UnityShaderCompiler.exe after 0.04 seconds
-Refreshing native plugins compatible for Editor in 0.53 ms, found 2 plugins.
+Refreshing native plugins compatible for Editor in 0.51 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2832 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 130.3 MB.
-System memory in use after: 130.5 MB.
+Unloading 2833 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 130.8 MB.
+System memory in use after: 131.0 MB.
 
-Unloading 20 unused Assets to reduce memory usage. Loaded Objects now: 3270.
-Total: 2.456400 ms (FindLiveObjects: 0.211600 ms CreateObjectMapping: 0.070700 ms MarkObjects: 2.110000 ms  DeleteObjects: 0.063400 ms)
+Unloading 20 unused Assets to reduce memory usage. Loaded Objects now: 3272.
+Total: 2.476500 ms (FindLiveObjects: 0.169100 ms CreateObjectMapping: 0.068800 ms MarkObjects: 2.178900 ms  DeleteObjects: 0.059100 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
@@ -131,185 +131,50 @@ AssetImportParameters requested are different than current active one (requested
   custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
 ========================================================================
 Received Import Request.
-  path: Assets/LookDev/Shaders
-  artifactKey: Guid(6d29ff5411bbb38448784edfd3dceb2d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/LookDev/Shaders using Guid(6d29ff5411bbb38448784edfd3dceb2d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b4ff4ead46714c4b238c87f77e462289') in 0.004439 seconds 
-  Import took 0.007233 seconds .
+  path: Assets/LookDev/Data/CustomLit.shader
+  artifactKey: Guid(584a3cbb75a781d4bad303255d164c1d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/LookDev/Data/CustomLit.shader using Guid(584a3cbb75a781d4bad303255d164c1d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0b9345adaee15f02aac4d40600595aa4') in 0.031360 seconds 
+  Import took 0.034610 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.050538 seconds.
-  path: Assets/LookDev/Shaders/Hatching.shader
-  artifactKey: Guid(63190ad7fb0409944b14ea69d25866fe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/LookDev/Shaders/Hatching.shader using Guid(63190ad7fb0409944b14ea69d25866fe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'eb8332da9219dab1e8590dafdb7eac52') in 0.025534 seconds 
-  Import took 0.029218 seconds .
+  Time since last request: 0.000143 seconds.
+  path: Assets/LookDev/Data/BoxFilter.cs
+  artifactKey: Guid(ac73957ef8b7a604bbaa93433f09a22e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/LookDev/Data/BoxFilter.cs using Guid(ac73957ef8b7a604bbaa93433f09a22e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '29bd8a169eb2eef7533fbb7c0437eef1') in 0.007399 seconds 
+  Import took 0.010257 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 25.698222 seconds.
-  path: Assets/LookDev/Shaders/Hatching.shader
-  artifactKey: Guid(63190ad7fb0409944b14ea69d25866fe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/LookDev/Shaders/Hatching.shader using Guid(63190ad7fb0409944b14ea69d25866fe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cc1804580ea4c6f750ca31150fd1e03e') in 0.001964 seconds 
-  Import took 0.006719 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 210.250725 seconds.
+  Time since last request: 2.384270 seconds.
   path: Assets/LookDev/Data/Outline.hlsl
   artifactKey: Guid(222487dbedc3c0c41b9af454daaddd8d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/LookDev/Data/Outline.hlsl using Guid(222487dbedc3c0c41b9af454daaddd8d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fab8b1442723165ac20bbf219d508eed') in 0.008121 seconds 
-  Import took 0.011648 seconds .
+Start importing Assets/LookDev/Data/Outline.hlsl using Guid(222487dbedc3c0c41b9af454daaddd8d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a190d89776e9f2e1e5bd6a1583b84633') in 0.022978 seconds 
+  Import took 0.026543 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 308.093221 seconds.
-  path: Assets/LookDev/Data/Outline.hlsl
+  Time since last request: 17.734259 seconds.
+  path: Assets/LookDev/Data/CrossOutline.hlsl
   artifactKey: Guid(222487dbedc3c0c41b9af454daaddd8d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/LookDev/Data/Outline.hlsl using Guid(222487dbedc3c0c41b9af454daaddd8d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c8562389f88ed8bf8ecd6acfd1f6cde7') in 0.002354 seconds 
-  Import took 0.007169 seconds .
+Start importing Assets/LookDev/Data/CrossOutline.hlsl using Guid(222487dbedc3c0c41b9af454daaddd8d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bda8d1a56d2353bb0b9a46ec840b8236') in 0.002227 seconds 
+  Import took 0.005733 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 7.576607 seconds.
-  path: Assets/LookDev/Data/Outline.hlsl
-  artifactKey: Guid(222487dbedc3c0c41b9af454daaddd8d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/LookDev/Data/Outline.hlsl using Guid(222487dbedc3c0c41b9af454daaddd8d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'daf5fd78c5acf647b448a397884bba34') in 0.002317 seconds 
-  Import took 0.006186 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 10.541097 seconds.
-  path: Assets/LookDev/Data/Outline.shadergraph
-  artifactKey: Guid(73b61ee06b755ed4cb998cff0a5eef27) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/LookDev/Data/Outline.shadergraph using Guid(73b61ee06b755ed4cb998cff0a5eef27) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a12c8f5914cea8ce328607f82c64d2e8') in 0.005164 seconds 
-  Import took 0.008712 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 186.194144 seconds.
-  path: Assets/LookDev/Data/SobelOutline.hlsl
-  artifactKey: Guid(af8d0bd4a5c315844ab9f45dc0ae33e1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/LookDev/Data/SobelOutline.hlsl using Guid(af8d0bd4a5c315844ab9f45dc0ae33e1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9abdab2c5e6837cc3556366083cb7da1') in 0.002320 seconds 
-  Import took 0.007366 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 95.834204 seconds.
-  path: Assets/LookDev/Data/SobelOutline.hlsl
-  artifactKey: Guid(af8d0bd4a5c315844ab9f45dc0ae33e1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/LookDev/Data/SobelOutline.hlsl using Guid(af8d0bd4a5c315844ab9f45dc0ae33e1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fc9e759f9bd7aa1ef1c05e63d5b25d1f') in 0.002194 seconds 
-  Import took 0.006452 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 15.283973 seconds.
-  path: Assets/LookDev/Data/OutLine.mat
+  Time since last request: 18.181451 seconds.
+  path: Assets/LookDev/Data/CrossOutLine.mat
   artifactKey: Guid(21c1d772728a22b42a176930701d7023) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/LookDev/Data/OutLine.mat using Guid(21c1d772728a22b42a176930701d7023) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4e740b0e9e6f07675c89934079321ee5') in 0.123979 seconds 
-  Import took 0.127609 seconds .
+Start importing Assets/LookDev/Data/CrossOutLine.mat using Guid(21c1d772728a22b42a176930701d7023) Importer(815301076,1909f56bfc062723c751e8b465ee728b) Shader error in 'Shader Graphs/Outline': Couldn't open include file 'Assets/LookDev/Data/Outline.hlsl'. at line 195
 
-========================================================================
-Received Import Request.
-  Time since last request: 16.235889 seconds.
-  path: Assets/LookDev/Data/Outline.shadergraph
-  artifactKey: Guid(73b61ee06b755ed4cb998cff0a5eef27) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/LookDev/Data/Outline.shadergraph using Guid(73b61ee06b755ed4cb998cff0a5eef27) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'aec76f08026dccfb98df5221431ba4a8') in 0.001791 seconds 
-  Import took 0.005243 seconds .
+Compiling Vertex program
+Platform defines: SHADER_API_DESKTOP UNITY_ENABLE_DETAIL_NORMALMAP UNITY_ENABLE_REFLECTION_BUFFERS UNITY_LIGHTMAP_RGBM_ENCODING UNITY_LIGHT_PROBE_PROXY_VOLUME UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BLENDING UNITY_SPECCUBE_BOX_PROJECTION UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS
+Disabled keywords: DIRLIGHTMAP_COMBINED DOTS_INSTANCING_ON FOG_EXP FOG_EXP2 FOG_LINEAR INSTANCING_ON LIGHTMAP_ON SHADER_API_GLES30 UNITY_ASTC_NORMALMAP_ENCODING UNITY_COLORSPACE_GAMMA UNITY_ENABLE_NATIVE_SHADOW_LOOKUPS UNITY_HALF_PRECISION_FRAGMENT_SHADER_REGISTERS UNITY_HARDWARE_TIER1 UNITY_HARDWARE_TIER2 UNITY_HARDWARE_TIER3 UNITY_LIGHTMAP_DLDR_ENCODING UNITY_LIGHTMAP_FULL_HDR UNITY_METAL_SHADOWS_USE_POINT_FILTERING UNITY_NO_DXT5nm UNITY_NO_FULL_STANDARD_SHADER UNITY_NO_SCREENSPACE_SHADOWS UNITY_PBS_USE_BRDF2 UNITY_PBS_USE_BRDF3 UNITY_PRETRANSFORM_TO_DISPLAY_ORIENTATION UNITY_VIRTUAL_TEXTURING _SAMPLE_GI
+Shader error in 'Shader Graphs/Outline': Couldn't open include file 'Assets/LookDev/Data/Outline.hlsl'. at line 195
 
-========================================================================
-Received Import Request.
-  Time since last request: 0.636053 seconds.
-  path: Assets/LookDev/Data/Outline 1.shadergraph
-  artifactKey: Guid(436504be437dc5e4d8f76d36b9cb0de1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/LookDev/Data/Outline 1.shadergraph using Guid(436504be437dc5e4d8f76d36b9cb0de1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7c61494e9a584fa28abc7a539750373f') in 0.002523 seconds 
-  Import took 0.006421 seconds .
+Compiling Vertex program
+Platform defines: SHADER_API_DESKTOP UNITY_ENABLE_DETAIL_NORMALMAP UNITY_ENABLE_REFLECTION_BUFFERS UNITY_LIGHTMAP_RGBM_ENCODING UNITY_LIGHT_PROBE_PROXY_VOLUME UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BLENDING UNITY_SPECCUBE_BOX_PROJECTION UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS
+Disabled keywords: DIRLIGHTMAP_COMBINED DOTS_INSTANCING_ON FOG_EXP FOG_EXP2 FOG_LINEAR INSTANCING_ON LIGHTMAP_ON SHADER_API_GLES30 UNITY_ASTC_NORMALMAP_ENCODING UNITY_COLORSPACE_GAMMA UNITY_ENABLE_NATIVE_SHADOW_LOOKUPS UNITY_HALF_PRECISION_FRAGMENT_SHADER_REGISTERS UNITY_HARDWARE_TIER1 UNITY_HARDWARE_TIER2 UNITY_HARDWARE_TIER3 UNITY_LIGHTMAP_DLDR_ENCODING UNITY_LIGHTMAP_FULL_HDR UNITY_METAL_SHADOWS_USE_POINT_FILTERING UNITY_NO_DXT5nm UNITY_NO_FULL_STANDARD_SHADER UNITY_NO_SCREENSPACE_SHADOWS UNITY_PBS_USE_BRDF2 UNITY_PBS_USE_BRDF3 UNITY_PRETRANSFORM_TO_DISPLAY_ORIENTATION UNITY_VIRTUAL_TEXTURING _SAMPLE_GI
+ -> (artifact id: '3ef34411c85a5d6753fba581bcfd4ec7') in 0.151247 seconds 
+  Import took 0.155249 seconds .
 
-========================================================================
-Received Import Request.
-  Time since last request: 5.662174 seconds.
-  path: Assets/LookDev/Data/SobelOutline.shadergraph
-  artifactKey: Guid(436504be437dc5e4d8f76d36b9cb0de1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/LookDev/Data/SobelOutline.shadergraph using Guid(436504be437dc5e4d8f76d36b9cb0de1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b0378040386651c1caad40303c1826af') in 0.002308 seconds 
-  Import took 0.006344 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 10.080022 seconds.
-  path: Assets/LookDev/Data/Outline.shadergraph
-  artifactKey: Guid(73b61ee06b755ed4cb998cff0a5eef27) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/LookDev/Data/Outline.shadergraph using Guid(73b61ee06b755ed4cb998cff0a5eef27) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7248969ee572130784ebddfc95813542') in 0.001714 seconds 
-  Import took 0.005152 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 18.280481 seconds.
-  path: Assets/LookDev/Data/OutLine 1.mat
-  artifactKey: Guid(d21543bf7c9fd3e47890d8b3486dd3a4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/LookDev/Data/OutLine 1.mat using Guid(d21543bf7c9fd3e47890d8b3486dd3a4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6359fe7b68a1342a14763d78c8b01dda') in 0.007020 seconds 
-  Import took 0.011071 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 9.385545 seconds.
-  path: Assets/LookDev/Data/SobelOutLine.mat
-  artifactKey: Guid(d21543bf7c9fd3e47890d8b3486dd3a4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/LookDev/Data/SobelOutLine.mat using Guid(d21543bf7c9fd3e47890d8b3486dd3a4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c80308225470baee0327ba8213c7f004') in 0.008923 seconds 
-  Import took 0.013482 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 1747.546689 seconds.
-  path: Assets/LookDev/Data/SobelOutline.hlsl
-  artifactKey: Guid(af8d0bd4a5c315844ab9f45dc0ae33e1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/LookDev/Data/SobelOutline.hlsl using Guid(af8d0bd4a5c315844ab9f45dc0ae33e1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '627388d37fbe02bc13dfe3a6ef25ac1c') in 0.001949 seconds 
-  Import took 0.005809 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 1.861737 seconds.
-  path: Assets/LookDev/Data/SobelOutLine.mat
-  artifactKey: Guid(d21543bf7c9fd3e47890d8b3486dd3a4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/LookDev/Data/SobelOutLine.mat using Guid(d21543bf7c9fd3e47890d8b3486dd3a4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4c013999064fe5ea4f28bb935a6f7f26') in 0.036729 seconds 
-  Import took 0.040632 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000132 seconds.
-  path: Assets/LookDev/Data/SobelOutline 1.hlsl
-  artifactKey: Guid(638d9e90b18ca7b4db0ef9cb5b105d74) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/LookDev/Data/SobelOutline 1.hlsl using Guid(638d9e90b18ca7b4db0ef9cb5b105d74) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '22bb67a2302397779dd8af642bec5fe4') in 0.001982 seconds 
-  Import took 0.005221 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000116 seconds.
-  path: Assets/LookDev/Data/ToonRenderer.asset
-  artifactKey: Guid(8496d995da56e8040b701aa6cb411d6d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/LookDev/Data/ToonRenderer.asset using Guid(8496d995da56e8040b701aa6cb411d6d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd4700d4c4c1b4ea266925e53ecc506ef') in 0.004343 seconds 
-  Import took 0.008132 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 6.376453 seconds.
-  path: Assets/LookDev/Data/SobelOutline2.hlsl
-  artifactKey: Guid(638d9e90b18ca7b4db0ef9cb5b105d74) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/LookDev/Data/SobelOutline2.hlsl using Guid(638d9e90b18ca7b4db0ef9cb5b105d74) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'de94813fe82e18f4ce51eab6e917f838') in 0.002118 seconds 
-  Import took 0.005937 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 1.115368 seconds.
-  path: Assets/LookDev/Data/SobelOutline.shadergraph
-  artifactKey: Guid(436504be437dc5e4d8f76d36b9cb0de1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/LookDev/Data/SobelOutline.shadergraph using Guid(436504be437dc5e4d8f76d36b9cb0de1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '453cc575fe6c2352576a940297466d19') in 0.002200 seconds 
-  Import took 0.005811 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 1066.941751 seconds.
-  path: Assets/LookDev/Data/SobelOutLine.mat
-  artifactKey: Guid(d21543bf7c9fd3e47890d8b3486dd3a4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/LookDev/Data/SobelOutLine.mat using Guid(d21543bf7c9fd3e47890d8b3486dd3a4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '90fe67ac676de2650fb15d1856199571') in 0.009674 seconds 
-  Import took 0.014341 seconds .
-
-AssetImportWorkerClient::OnTransportError - code=2 error=End of file

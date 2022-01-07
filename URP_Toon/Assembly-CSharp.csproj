@@ -70,7 +70,7 @@
   <ItemGroup>
     <None Include="Assets\LookDev\Data\Internal-DepthNormalsTexture.shader" />
     <None Include="Assets\LookDev\Materials\Toon\GetLighting.hlsl" />
-    <None Include="Assets\LookDev\Data\Outline.hlsl" />
+    <None Include="Assets\LookDev\Data\CrossOutline.hlsl" />
     <None Include="Assets\LookDev\Materials\Toon\NewSurfaceShader.shader" />
     <None Include="Assets\LookDev\Shaders\BDLit.hlsl" />
     <None Include="Assets\LookDev\Shaders\Hatching.shader" />

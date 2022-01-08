@@ -1,30 +1,76 @@
-#include "Assets/LookDev/Materials/Toon/GetLighting.hlsl"
 
 #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
 #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
 
-
-void GetToonLit(float3 WorldNormal, float3 WorldPos,float Threshold ,out float3 Direction, out float3 Color, out float ShadowAttenuation, out float LitShadAttenuation)
+float remap(float value, float inputMin, float inputMax, float outputMin, float outputMax)
 {
-    Light mainLight = GetMainLight();
+    return (value - inputMin) * ((outputMax - outputMin) / (inputMax - inputMin)) + outputMin;
+}
+void GetToonLit(float3 WorldNormal, float3 WorldPos, float Threshold, out float3 Direction, out float3 MainLightColor, out float3 AdditionalColor, out float DistAttenuation , out float AdditionalDistAttenuation, out float ShadowAttenuation,out float3 MainLighting,out float3 AdditionalLighting)
+{
+#pragma multi_compile _ _MAIN_LIGHT_SHADOWS
+#pragma multi_compile _ _MAIN_LIGHT_SHADOWS_CASCADE
 
-    
-    float strength = dot(mainLight.direction, WorldNormal);
-    float oneminusStrength = -1 * (strength - 1);
-                
-                //-------------ライティングのみ
-                // ピクセルの法線とライトの方向の内積を計算する
+#if SHADOWS_SCREEN
+		float4 clipPos = TransformWorldToHClip(WorldPos);
+		float4 shadowCoord = ComputeScreenPos(clipPos);
+#else
+
+    float4 shadowCoord = TransformWorldToShadowCoord(WorldPos);
+#endif
+    Light mainLight = GetMainLight(shadowCoord);
+    Direction = mainLight.direction;
+    MainLightColor = mainLight.color;
+	
+#ifdef _GET_SELFSHADOW_ON
+    DistAttenuation = mainLight.distanceAttenuation ; 
+	ShadowAttenuation = mainLight.shadowAttenuation; //でメインライトの影取得。　別々にした
+#else
+    DistAttenuation = mainLight.distanceAttenuation;
+	
+	#endif
+    float3 additionalLighting;
+	#ifdef _ADDITIONAL_LIGHTS
+    uint pixelLightCount = GetAdditionalLightsCount();
+    for (uint lightIndex = 0u; lightIndex < pixelLightCount; ++lightIndex)
+    {
+        Light light = GetAdditionalLight(lightIndex, WorldPos);
+        Direction += light.direction;
+	//AdditionalColor = light.color ;        
+	AdditionalDistAttenuation = light.distanceAttenuation ;
+	remap(AdditionalDistAttenuation,0, 1,10, 100);
+	additionalLighting += step(.001-AdditionalDistAttenuation,0)*light.color;        //追加ライトの2値化＆色付け
+	ShadowAttenuation *=  light.shadowAttenuation;	//影のAttenuationは乗算で黒く
+	}
+	//additionalLighting  *=0.01;
+    #endif
+    //MainLightColor = additionalLighting;
+    //float DistAttenuation;
+    //float AdditionalDistAttenuation;
+    AdditionalColor = float3(0, 0, 0);
+ //   Light mainLight = GetMainLight();
+            
+    //-------------ライティングのみ
+    // ピクセルの法線とライトの方向の内積を計算する
     float t = dot(WorldNormal, mainLight.direction);
                 // 内積の値を0以上の値にする
-    t = max(0, t);
+    t = remap(t,-1,1,0,1);
                 //---------------------------------
-
+    t = step(1-t, Threshold);   //先に2値化することで影の範囲を調整する。
                //float shadowAttenuation;
                    //float shadowAttenuation;
-               
-    MainLight_float(WorldPos, Direction, Color, ShadowAttenuation);
-    LitShadAttenuation = step(ShadowAttenuation * t, Threshold);
+   //ShadowAttenuation = 2*ShadowAttenuation; 
+    //MainLight_float(WorldPos, Direction, Color, AdditionalColor, DistAttenuation, AdditionalDistAttenuation, ShadowAttenuation);
+    DistAttenuation = remap(DistAttenuation,0, 2, 0, 1);
+    AdditionalDistAttenuation = remap(AdditionalDistAttenuation,0, 2, 0, 1);
+   // ShadowAttenuation *= 0.01;      //shadowAttenはライトが触れたときに値が変わってる？ <---　ポイントライト範囲に入ると色がつくので?
     
+   // ShadowAttenuation = step(t*ShadowAttenuation+DistAttenuation , Threshold); //なぜか明るいほうが－1になってるので反転suru
+   // LitShadAttenuation = AdditionalDistAttenuation;
+    AdditionalLighting = additionalLighting;
+    MainLighting = step(1-t, Threshold)*MainLightColor;
+   // Color = Color * 0.1;
+
 }
 //
 

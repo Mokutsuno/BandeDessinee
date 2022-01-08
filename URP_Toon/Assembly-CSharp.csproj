@@ -70,17 +70,21 @@
   <ItemGroup>
     <None Include="Assets\LookDev\Data\Internal-DepthNormalsTexture.shader" />
     <None Include="Assets\LookDev\Materials\Toon\GetLighting.hlsl" />
+    <None Include="Assets\LookDev\Shaders\GetLighting.hlsl" />
     <None Include="Assets\LookDev\Data\CrossOutline.hlsl" />
     <None Include="Assets\LookDev\Materials\Toon\NewSurfaceShader.shader" />
     <None Include="Assets\LookDev\Shaders\BDLit.hlsl" />
-    <None Include="Assets\LookDev\Shaders\Hatching.shader" />
+    <None Include="Assets\LookDev\Shaders\BDHatching.shader" />
     <None Include="Assets\LookDev\Data\SobelOutline2.hlsl" />
+    <None Include="Assets\LookDev\Shaders\BDTransparent.shader" />
     <None Include="Assets\LookDev\Data\SobelFilter.shader" />
     <None Include="Assets\LookDev\Data\OutlineMask.shader" />
     <None Include="Assets\LookDev\Data\CustomLit.shader" />
     <None Include="Assets\LookDev\Shaders\ShaderSample.shader" />
     <None Include="Assets\LookDev\Data\DepthNormals.shader" />
+    <None Include="Assets\LookDev\Shaders\BDShadowCasterPass.hlsl" />
     <None Include="Assets\LookDev\Data\Shadows.hlsl" />
+    <None Include="Assets\LookDev\Materials\NewSurfaceShader.shader" />
     <None Include="Assets\LookDev\Data\SobelOutline.hlsl" />
   </ItemGroup>
   <ItemGroup>

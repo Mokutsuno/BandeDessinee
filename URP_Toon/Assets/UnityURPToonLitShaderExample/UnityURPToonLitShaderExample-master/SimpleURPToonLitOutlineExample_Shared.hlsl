@@ -372,7 +372,7 @@ half3 ApplyFog(half3 color, Varyings input)
     // Mix the pixel color with fogColor. You can optionaly use MixFogColor to override the fogColor
     // with a custom one.
     color = MixFog(color, fogFactor);
-
+   //color = float3(input.positionWSAndFogFactor.w, input.positionWSAndFogFactor.w, input.positionWSAndFogFactor.w);
     return color;  
 }
 

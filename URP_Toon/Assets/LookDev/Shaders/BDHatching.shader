@@ -85,10 +85,12 @@ ZWrite On
 
             struct BDVaryings
             {
-                float4 positionCS : SV_POSITION;
-                float3 positionWS : TEXCOORD8; //POSITIONだとエラー起きるのでTEXCOORDで暫定対処
                 float2 uv : TEXCOORD0;
-                float3 normalWS : TEXCOORD1;
+                float4 positionWSAndFogFactor   : TEXCOORD1; // xyz: positionWS, w: vertex fog factor
+
+                float3 normalWS : TEXCOORD2;
+                float4 positionCS : SV_POSITION;    //クリップ空間（Clip Space）
+
             };
 
 
@@ -97,12 +99,20 @@ ZWrite On
             BDVaryings vert(BDAttributes input)
             {
                 BDVaryings output = (BDVaryings)0;
-                VertexPositionInputs vertex = GetVertexPositionInputs(input.positionOS.xyz);
+                VertexPositionInputs vertex = GetVertexPositionInputs(input.positionOS);
                 output.positionCS = vertex.positionCS;
-                output.positionWS = vertex.positionWS;
+                //output.positionWSAndFogFactor.xyz = vertex.positionWS;
                 VertexNormalInputs normal = GetVertexNormalInputs(input.normalOS);
-                output.normalWS = normal.normalWS;
+                //output.positionWSAndFogFactor.xyz = normal.normalWS;
                 output.uv = TRANSFORM_TEX(input.uv, _MainTex);
+
+                // Computes fog factor per-vertex.
+                float fogFactor = ComputeFogFactor(vertex.positionCS.z);    //ComputeFogFactorのの後を経由しないと正しいfogfactorが出ない
+                // packing positionWS(xyz) & fog(w) into a vector4
+                output.positionWSAndFogFactor = float4(vertex.positionWS, fogFactor);
+                
+                //output.positionCS = TransformWorldToHClip(vertex.positionWS);
+
                 return output;
             }
 
@@ -110,7 +120,7 @@ ZWrite On
             {
                 // カメラとオブジェクトの距離(長さ)を取得
                 // _WorldSpaceCameraPos：定義済の値　ワールド座標系のカメラの位置
-               float cameraToObjLength = length(_WorldSpaceCameraPos - input.positionWS);
+               float cameraToObjLength = length(_WorldSpaceCameraPos - input.positionWSAndFogFactor.xyz);
                float3 Direction;
                float3 MainLightColor;
                float3 AdditionalColor;
@@ -121,7 +131,7 @@ ZWrite On
                float3 MainLighting;
                float3 AdditionalLighting;
 
-               GetToonLit(input.normalWS,input.positionWS,_ShadowThreshold, Direction,MainLightColor,AdditionalColor, DistanceAtten, AdditionalDistAtten, ShadowAtten,MainLighting,AdditionalLighting);
+               GetToonLit(input.normalWS,input.positionWSAndFogFactor,_ShadowThreshold, Direction,MainLightColor,AdditionalColor, DistanceAtten, AdditionalDistAtten, ShadowAtten,MainLighting,AdditionalLighting);
                
                float4 TexColor = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, input.uv); //tex2d
                float4 shadowTexColor = TexColor*_ShadowColor;
@@ -134,21 +144,24 @@ ZWrite On
                //float mainLighting = ShadowAttenuation;
                // float3 additionalLighting = AdditionalDistAttenuation * AdditionalColor;
                 
-                float4 output = lerp(shadowTexColor,TexColor, MainLighting.x*ShadowAtten);
-               output.xyz += AdditionalLighting;
+
+                float3 outputColor = lerp(shadowTexColor,TexColor, MainLighting.x*ShadowAtten);
+                outputColor.xyz += AdditionalLighting;
+
+                outputColor = ApplyFog(outputColor, input.positionWSAndFogFactor);
+
 
                
 
 #ifdef _ALPHAPREMULTIPLY_ON
                 #endif
-               output = float4(output);
               // output = float4(Color, alpha);
 
                //引数の値が"0以下なら"描画しない　すなわち"Alphaが0.5以下なら"描画しない
 
                //output = float4(LitShadAttenuation*AdditionalColor,1);
                // MainLight_float(input.positionWS, Direction, Color, Attenuation);    //MainLight_float(float3 WorldPos, out half3 Direction, out half3 Color, out half Attenuation)
-               return  output;
+               return  float4(outputColor,alpha);
            //return tex2D(_MainTex, input.uv) * mask;
        }
        ENDHLSL

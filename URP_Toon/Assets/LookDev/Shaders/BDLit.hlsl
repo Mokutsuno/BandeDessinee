@@ -119,7 +119,17 @@ void GetToonLit(float3 WorldNormal, float3 WorldPos, float Threshold, out float3
 
 }
 //
-
+half3 ApplyFog(half3 color, float4 positionWSAndFogFactor)
+{
+        // Computes fog factor per-vertex.
+    half fogFactor = positionWSAndFogFactor.w;
+   // half fogFactor = input.positionWSAndFogFactor.w;
+    // Mix the pixel color with fogColor. You can optionaly use MixFogColor to override the fogColor
+    // with a custom one.
+    color = MixFog(color, fogFactor);
+    //color = float3(positionWSAndFogFactor.w, positionWSAndFogFactor.w, positionWSAndFogFactor.w);
+    return color;
+}
 
 /////////////////////////////////////////////
 ///////// Depth Normal pass         /////////

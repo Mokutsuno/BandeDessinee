@@ -15,11 +15,11 @@ D:/Project_Mark2/Project2022/BandeDessinee/URP_Toon
 -logFile
 Logs/AssetImportWorker0.log
 -srvPort
-56955
+55827
 Successfully changed project path to: D:/Project_Mark2/Project2022/BandeDessinee/URP_Toon
 D:/Project_Mark2/Project2022/BandeDessinee/URP_Toon
 Using Asset Import Pipeline V2.
-Refreshing native plugins compatible for Editor in 33.80 ms, found 2 plugins.
+Refreshing native plugins compatible for Editor in 35.57 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2020.3.25f1 (9b9180224418)
 [Subsystems] Discovering subsystems at path D:/ProgramFiles_D/Unity/2020.3.25f1/Editor/Data/Resources/UnitySubsystems
@@ -35,28 +35,28 @@ Initialize mono
 Mono path[0] = 'D:/ProgramFiles_D/Unity/2020.3.25f1/Editor/Data/Managed'
 Mono path[1] = 'D:/ProgramFiles_D/Unity/2020.3.25f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
 Mono config path = 'D:/ProgramFiles_D/Unity/2020.3.25f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56284
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56376
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: D:/ProgramFiles_D/Unity/2020.3.25f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Registered in 0.000822 seconds.
+Registered in 0.000824 seconds.
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 35.66 ms, found 2 plugins.
+Refreshing native plugins compatible for Editor in 36.14 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  0.379 seconds
+- Completed reload, in  0.377 seconds
 Domain Reload Profiling:
-	ReloadAssembly (380ms)
-		BeginReloadAssembly (37ms)
+	ReloadAssembly (377ms)
+		BeginReloadAssembly (41ms)
 			ExecutionOrderSort (0ms)
 			DisableScriptedObjects (0ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
 			CreateAndSetChildDomain (1ms)
-		EndReloadAssembly (298ms)
-			LoadAssemblies (36ms)
+		EndReloadAssembly (290ms)
+			LoadAssemblies (41ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (98ms)
+			SetupTypeCache (92ms)
 			ReleaseScriptCaches (0ms)
 			RebuildScriptCaches (17ms)
 			SetupLoadedEditorAssemblies (117ms)
@@ -64,8 +64,8 @@ Domain Reload Profiling:
 				InitializePlatformSupportModulesInManaged (3ms)
 				SetLoadedEditorAssemblies (0ms)
 				RefreshPlugins (36ms)
-				BeforeProcessingInitializeOnLoad (11ms)
-				ProcessInitializeOnLoadAttributes (51ms)
+				BeforeProcessingInitializeOnLoad (10ms)
+				ProcessInitializeOnLoadAttributes (50ms)
 				ProcessInitializeOnLoadMethodAttributes (17ms)
 				AfterProcessingInitializeOnLoad (0ms)
 				EditorAssembliesLoaded (0ms)
@@ -73,51 +73,51 @@ Domain Reload Profiling:
 			AwakeInstancesAfterBackupRestoration (0ms)
 Platform modules already initialized, skipping
 Registering precompiled user dll's ...
-Registered in 0.003113 seconds.
+Registered in 0.003065 seconds.
 Begin MonoManager ReloadAssembly
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 37.47 ms, found 2 plugins.
+Refreshing native plugins compatible for Editor in 36.86 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  0.747 seconds
+- Completed reload, in  0.732 seconds
 Domain Reload Profiling:
-	ReloadAssembly (747ms)
-		BeginReloadAssembly (93ms)
+	ReloadAssembly (733ms)
+		BeginReloadAssembly (108ms)
 			ExecutionOrderSort (0ms)
 			DisableScriptedObjects (3ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (14ms)
-		EndReloadAssembly (612ms)
-			LoadAssemblies (66ms)
+			CreateAndSetChildDomain (15ms)
+		EndReloadAssembly (588ms)
+			LoadAssemblies (63ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (209ms)
+			SetupTypeCache (193ms)
 			ReleaseScriptCaches (0ms)
-			RebuildScriptCaches (31ms)
+			RebuildScriptCaches (29ms)
 			SetupLoadedEditorAssemblies (230ms)
 				LogAssemblyErrors (0ms)
 				InitializePlatformSupportModulesInManaged (2ms)
 				SetLoadedEditorAssemblies (0ms)
-				RefreshPlugins (38ms)
-				BeforeProcessingInitializeOnLoad (59ms)
-				ProcessInitializeOnLoadAttributes (123ms)
-				ProcessInitializeOnLoadMethodAttributes (7ms)
+				RefreshPlugins (37ms)
+				BeforeProcessingInitializeOnLoad (55ms)
+				ProcessInitializeOnLoadAttributes (128ms)
+				ProcessInitializeOnLoadMethodAttributes (6ms)
 				AfterProcessingInitializeOnLoad (2ms)
 				EditorAssembliesLoaded (0ms)
 			ExecutionOrderSort2 (0ms)
-			AwakeInstancesAfterBackupRestoration (4ms)
+			AwakeInstancesAfterBackupRestoration (5ms)
 Platform modules already initialized, skipping
 ========================================================================
 Worker process is ready to serve import requests
-Launched and connected shader compiler UnityShaderCompiler.exe after 0.04 seconds
-Refreshing native plugins compatible for Editor in 0.60 ms, found 2 plugins.
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.08 seconds
+Refreshing native plugins compatible for Editor in 0.95 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2839 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 133.7 MB.
-System memory in use after: 133.9 MB.
+Unloading 2840 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 134.4 MB.
+System memory in use after: 134.6 MB.
 
-Unloading 20 unused Assets to reduce memory usage. Loaded Objects now: 3278.
-Total: 2.615100 ms (FindLiveObjects: 0.207400 ms CreateObjectMapping: 0.070200 ms MarkObjects: 2.265400 ms  DeleteObjects: 0.071300 ms)
+Unloading 20 unused Assets to reduce memory usage. Loaded Objects now: 3279.
+Total: 3.024500 ms (FindLiveObjects: 0.261100 ms CreateObjectMapping: 0.073100 ms MarkObjects: 2.569800 ms  DeleteObjects: 0.119300 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
@@ -131,56 +131,16 @@ AssetImportParameters requested are different than current active one (requested
   custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
 ========================================================================
 Received Import Request.
-  path: Assets/LookDev/Shaders/BDHatching.mat
-  artifactKey: Guid(fbf75a7b5de379b489c872f743e2daf2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/LookDev/Shaders/BDHatching.mat using Guid(fbf75a7b5de379b489c872f743e2daf2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '394bf7d4e765dc7cb550d94a54aed5e8') in 0.437507 seconds 
-  Import took 0.440996 seconds .
+  path: Assets/LookDev/Materials/BD_Hatching 1.mat
+  artifactKey: Guid(8dfaa388a6ab7e747ba17635f386f4e2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/LookDev/Materials/BD_Hatching 1.mat using Guid(8dfaa388a6ab7e747ba17635f386f4e2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5819842575fe4e4a8f4cc0c7013eac39') in 0.156701 seconds 
+  Import took 0.160349 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 1916.564355 seconds.
-  path: Assets/LookDev/Shaders/BDLit.hlsl
-  artifactKey: Guid(337647ae6de9fe04ebede12a97d121e6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/LookDev/Shaders/BDLit.hlsl using Guid(337647ae6de9fe04ebede12a97d121e6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ec292a4fad94e29e3422d4d32829cfbb') in 0.011866 seconds 
-  Import took 0.049266 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 8.956759 seconds.
-  path: Assets/LookDev/Shaders/GetLighting.hlsl
-  artifactKey: Guid(c1282583970d9d74d91bdb1990b1f3ac) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/LookDev/Shaders/GetLighting.hlsl using Guid(c1282583970d9d74d91bdb1990b1f3ac) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '89a6c7d6984f8d5c31eb4d2094dfa3d0') in 0.002410 seconds 
-  Import took 0.006236 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 7518.497355 seconds.
-  path: Assets/LookDev/Data/ToonRenderer.asset
-  artifactKey: Guid(8496d995da56e8040b701aa6cb411d6d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/LookDev/Data/ToonRenderer.asset using Guid(8496d995da56e8040b701aa6cb411d6d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5011d53fefd8778a3a032a0eac1c3613') in 0.028510 seconds 
-  Import took 0.064670 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 1287.241057 seconds.
-  path: Assets/LookDev/Data/ToonRenderer.asset
-  artifactKey: Guid(8496d995da56e8040b701aa6cb411d6d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/LookDev/Data/ToonRenderer.asset using Guid(8496d995da56e8040b701aa6cb411d6d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e05abecb979fddc0db1f2ac73c44fe71') in 0.003864 seconds 
-  Import took 0.009952 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 3.307986 seconds.
-  path: Assets/LookDev/Shaders/BDHatching.mat
-  artifactKey: Guid(fbf75a7b5de379b489c872f743e2daf2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/LookDev/Shaders/BDHatching.mat using Guid(fbf75a7b5de379b489c872f743e2daf2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd4cdd605473e9b887f2a2d21b3fa54c6') in 0.013384 seconds 
-  Import took 0.017010 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 1.609953 seconds.
-  path: Assets/LookDev/Shaders/GetLighting.hlsl
-  artifactKey: Guid(c1282583970d9d74d91bdb1990b1f3ac) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/LookDev/Shaders/GetLighting.hlsl using Guid(c1282583970d9d74d91bdb1990b1f3ac) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6fbd1eaa8f740feeb324dab43a198865') in 0.003191 seconds 
-  Import took 0.010476 seconds .
+  Time since last request: 9.204788 seconds.
+  path: Assets/LookDev/Materials/BD_Hatching2.mat
+  artifactKey: Guid(8dfaa388a6ab7e747ba17635f386f4e2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/LookDev/Materials/BD_Hatching2.mat using Guid(8dfaa388a6ab7e747ba17635f386f4e2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '67e08c5948ac58a00d2f81df4bebd011') in 0.025723 seconds 
+  Import took 0.030609 seconds .
 

@@ -12,6 +12,8 @@ Shader "URP_BD/Hatching"
             _Cutoff("Alpha Cutoff", Range(0.0, 1.0)) = 0.5
 
         [Toggle] _GET_SELFSHADOW("Get Self Shadow", Float) = 0
+            _ReceiveShadowMappingPosOffset("_ReceiveShadowMappingPosOffset", Float) = 0
+                    [ToggleUI]_IsFace("Is Face? (please turn on if this is a face material)", Float) = 0
     }
         SubShader
     {
@@ -33,7 +35,14 @@ ZWrite On
             HLSLPROGRAM
 
             // Pragmas
-            #define _ADDITIONAL_LIGHTS 1        //重い？　複数ライトを使う
+            #pragma multi_compile _ _MAIN_LIGHT_SHADOWS
+            #pragma multi_compile _ _MAIN_LIGHT_SHADOWS_CASCADE
+            #pragma multi_compile _ _ADDITIONAL_LIGHTS_VERTEX _ADDITIONAL_LIGHTS
+            #pragma multi_compile_fragment _ _ADDITIONAL_LIGHT_SHADOWS
+            #pragma multi_compile_fragment _ _SHADOWS_SOFT
+            #pragma shader_feature _ALPHATEST_ON
+            #pragma shader_feature _ALPHAPREMULTIPLY_ON
+
             #pragma prefer_hlslcc gles
             #pragma exclude_renderers d3d11_9x
             #pragma target 2.0
@@ -41,13 +50,8 @@ ZWrite On
             #pragma vertex vert
             #pragma fragment frag
 
-            // Defines
-            #define _AlphaClip 1
-
-            #pragma shader_feature _ALPHATEST_ON
-            #pragma shader_feature _ALPHAPREMULTIPLY_ON
-            
-            #pragma shader_feature _GET_SELFSHADOW_ON
+            // Unity defined keywords
+            #pragma multi_compile_fog
           //  #include "Assets/LookDev/Materials/Toon/GetLighting.hlsl"
             #include "Assets/LookDev/Shaders/BDLit.hlsl"
          //   #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
@@ -56,9 +60,14 @@ ZWrite On
 
             TEXTURE2D(_MainTex);
             SAMPLER(sampler_MainTex);
+
+
             float4 _ShadowColor;
             float _ClampThreshold;
             float _ShadowThreshold;
+            float  _ReceiveShadowMappingPosOffset;
+            float _IsFace;
+
 
             CBUFFER_START(UnityPerMaterial)
                 float4 _MainTex_ST;
@@ -105,14 +114,14 @@ ZWrite On
                float3 Direction;
                float3 MainLightColor;
                float3 AdditionalColor;
-               float ShadowAttenuation;
-               float DistAttenuation;
-               float AdditionalDistAttenuation;
+               float ShadowAtten;
+               float DistanceAtten;
+               float AdditionalDistAtten;
 
                float3 MainLighting;
                float3 AdditionalLighting;
 
-               GetToonLit(input.normalWS,input.positionWS,_ShadowThreshold, Direction,MainLightColor,AdditionalColor, DistAttenuation, AdditionalDistAttenuation, ShadowAttenuation,MainLighting,AdditionalLighting);
+               GetToonLit(input.normalWS,input.positionWS,_ShadowThreshold, Direction,MainLightColor,AdditionalColor, DistanceAtten, AdditionalDistAtten, ShadowAtten,MainLighting,AdditionalLighting);
                
                float4 TexColor = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, input.uv); //tex2d
                float4 shadowTexColor = TexColor*_ShadowColor;
@@ -125,7 +134,7 @@ ZWrite On
                //float mainLighting = ShadowAttenuation;
                // float3 additionalLighting = AdditionalDistAttenuation * AdditionalColor;
                 
-                float4 output = lerp(shadowTexColor,TexColor, MainLighting.x*ShadowAttenuation) ;
+                float4 output = lerp(shadowTexColor,TexColor, MainLighting.x*ShadowAtten);
                output.xyz += AdditionalLighting;
 
                

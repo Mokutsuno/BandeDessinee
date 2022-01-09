@@ -1,13 +1,60 @@
-
+//////////////////////////////
+////// 参考　https://forum.unity.com/threads/shadow-attenuation-issue-on-urp-spot-light-in-custom-lighting.928908/
+////// 参考 https://github.com/ColinLeung-NiloCat/UnityURPToonLitShaderExample.git
+////////////
 #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
 #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
+#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Shadows.hlsl"
+
+
 
 float remap(float value, float inputMin, float inputMax, float outputMin, float outputMax)
 {
     return (value - inputMin) * ((outputMax - outputMin) / (inputMax - inputMin)) + outputMin;
 }
-void GetToonLit(float3 WorldNormal, float3 WorldPos, float Threshold, out float3 Direction, out float3 MainLightColor, out float3 AdditionalColor, out float DistAttenuation , out float AdditionalDistAttenuation, out float ShadowAttenuation,out float3 MainLighting,out float3 AdditionalLighting)
+
+//追加ライトぶんのライティング計算。影も落ちた状態
+half3 ShadeSingleLight( Light light, bool isAdditionalLight)
 {
+    //half3 N = lightingData.normalWS;
+    half3 L = light.direction;
+
+    //half NoL = dot(N, L);
+
+    half lightAttenuation = 1;
+
+    // light's distance & angle fade for point light & spot light (see GetAdditionalPerObjectLight(...) in Lighting.hlsl)
+    // Lighting.hlsl -> https://github.com/Unity-Technologies/Graphics/blob/master/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl
+    half distanceAttenuation = min(4, light.distanceAttenuation); //clamp to prevent light over bright if point/spot light too close to vertex
+    half lighting = distanceAttenuation * light.shadowAttenuation;
+    //remap(lighting, 0, 0.1, 0, 1);
+    half3 additionalLighting =step(0.001,lighting)*  light.color; //追加ライトの2値化＆色付け
+    return additionalLighting;
+}
+
+void GetToonLit(float3 WorldNormal, float3 WorldPos, float Threshold, out float3 Direction, out float3 MainLightColor, out float3 AdditionalColor, out float DistAttenuation , out float AdditionalDistAtten, out float ShadowAtten,out float3 MainLighting,out float3 AdditionalLighting)
+{
+        //////////////////////////////////////////////////////////////////////////////////
+    // Light struct is provided by URP to abstract light shader variables.
+    // It contains light's
+    // - direction
+    // - color
+    // - distanceAttenuation 距離などによる減衰
+    // - shadowAttenuation  落ち影による減衰
+    //
+    // URP take different shading approaches depending on light and platform.
+    // You should never reference light shader variables in your shader, instead use the 
+    // -GetMainLight()
+    // -GetLight()
+    // funcitons to fill this Light struct.
+    //////////////////////////////////////////////////////////////////////////////////
+        //==============================================================================================
+    // Main light is the brightest directional light.
+    // It is shaded outside the light loop and it has a specific set of variables and shading path
+    // so we can be as fast as possible in the case when there's only a single directional light
+    // You can pass optionally a shadowCoord. If so, shadowAttenuation will be computed.
+         #pragma multi_compile _ _ADDITIONAL_LIGHT_SHADOWS
+             #pragma multi_compile _ _ADDITIONAL_LIGHT_CALCULATE_SHADOWS
 #pragma multi_compile _ _MAIN_LIGHT_SHADOWS
 #pragma multi_compile _ _MAIN_LIGHT_SHADOWS_CASCADE
 
@@ -19,57 +66,56 @@ void GetToonLit(float3 WorldNormal, float3 WorldPos, float Threshold, out float3
     float4 shadowCoord = TransformWorldToShadowCoord(WorldPos);
 #endif
     Light mainLight = GetMainLight(shadowCoord);
+    float3 shadowTestPosWS = WorldPos ;
     Direction = mainLight.direction;
     MainLightColor = mainLight.color;
-	
+    DistAttenuation = 0;
 #ifdef _GET_SELFSHADOW_ON
     DistAttenuation = mainLight.distanceAttenuation ; 
-	ShadowAttenuation = mainLight.shadowAttenuation; //でメインライトの影取得。　別々にした
-#else
-    DistAttenuation = mainLight.distanceAttenuation;
-	
-	#endif
+#endif
+
+    ShadowSamplingData shadowSamplingData = GetMainLightShadowSamplingData();
+    half4 shadowParams = GetMainLightShadowParams();
+	ShadowAtten = 1;
+    ShadowAtten = mainLight.shadowAttenuation; //でメインライトの影取得。　別々にした
     float3 additionalLighting;
 	#ifdef _ADDITIONAL_LIGHTS
-    uint pixelLightCount = GetAdditionalLightsCount();
-    for (uint lightIndex = 0u; lightIndex < pixelLightCount; ++lightIndex)
+    // Returns the amount of lights affecting the object being renderer.
+    // These lights are culled per-object in the forward renderer of URP.
+    float shadowAtten = 0;
+    float3 additionalLightSumResult;
+    uint additionalLightsCount = GetAdditionalLightsCount();
+    for (uint lightIndex = 0u; lightIndex < additionalLightsCount; ++lightIndex)
     {
-        Light light = GetAdditionalLight(lightIndex, WorldPos);
-        Direction += light.direction;
-	//AdditionalColor = light.color ;        
-	AdditionalDistAttenuation = light.distanceAttenuation ;
-	remap(AdditionalDistAttenuation,0, 1,10, 100);
-	additionalLighting += step(.001-AdditionalDistAttenuation,0)*light.color;        //追加ライトの2値化＆色付け
-	ShadowAttenuation *=  light.shadowAttenuation;	//影のAttenuationは乗算で黒く
-	}
-	//additionalLighting  *=0.01;
+    
+    // Similar to GetMainLight(), but it takes a for-loop index. This figures out the
+        // per-object light index and samples the light buffer accordingly to initialized the
+        // Light struct. If ADDITIONAL_LIGHT_CALCULATE_SHADOWS is defined it will also compute shadows.
+           int perObjectLightIndex = GetPerObjectLightIndex(lightIndex);
+    Light light = GetAdditionalPerObjectLight(perObjectLightIndex, WorldPos);
+     light.shadowAttenuation =   AdditionalLightRealtimeShadow(perObjectLightIndex,shadowTestPosWS);
+	AdditionalDistAtten = light.distanceAttenuation ;
+    additionalLightSumResult += ShadeSingleLight(light, 1);
+        
+	remap(AdditionalDistAtten,0, 1,10, 100);
+        
+    }
+    AdditionalLighting = additionalLightSumResult; //影のAttenuationは乗算で黒く
+    
     #endif
-    //MainLightColor = additionalLighting;
-    //float DistAttenuation;
-    //float AdditionalDistAttenuation;
     AdditionalColor = float3(0, 0, 0);
- //   Light mainLight = GetMainLight();
-            
     //-------------ライティングのみ
     // ピクセルの法線とライトの方向の内積を計算する
     float t = dot(WorldNormal, mainLight.direction);
-                // 内積の値を0以上の値にする
-    t = remap(t,-1,1,0,1);
-                //---------------------------------
-    t = step(1-t, Threshold);   //先に2値化することで影の範囲を調整する。
-               //float shadowAttenuation;
-                   //float shadowAttenuation;
-   //ShadowAttenuation = 2*ShadowAttenuation; 
-    //MainLight_float(WorldPos, Direction, Color, AdditionalColor, DistAttenuation, AdditionalDistAttenuation, ShadowAttenuation);
-    DistAttenuation = remap(DistAttenuation,0, 2, 0, 1);
-    AdditionalDistAttenuation = remap(AdditionalDistAttenuation,0, 2, 0, 1);
-   // ShadowAttenuation *= 0.01;      //shadowAttenはライトが触れたときに値が変わってる？ <---　ポイントライト範囲に入ると色がつくので?
+                
+    t = remap(t, -1, 1, 0, 1); // 内積の値を0以上の値にする
+    t = step(Threshold,t ); //先に2値化することで影の範囲を調整する。
+    //---------------------------------
     
-   // ShadowAttenuation = step(t*ShadowAttenuation+DistAttenuation , Threshold); //なぜか明るいほうが－1になってるので反転suru
-   // LitShadAttenuation = AdditionalDistAttenuation;
-    AdditionalLighting = additionalLighting;
-    MainLighting = step(1-t, Threshold)*MainLightColor;
-   // Color = Color * 0.1;
+    DistAttenuation = remap(DistAttenuation,0, 2, 0, 1);
+    AdditionalDistAtten = 1;
+    ShadowAtten = step( Threshold,ShadowAtten); 
+    MainLighting =t * MainLightColor;
 
 }
 //

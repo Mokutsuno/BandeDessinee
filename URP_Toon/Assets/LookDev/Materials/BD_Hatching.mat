@@ -9,7 +9,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: BD_Hatching
   m_Shader: {fileID: 4800000, guid: 63190ad7fb0409944b14ea69d25866fe, type: 3}
-  m_ShaderKeywords: _GET_SELFSHADOW_ON
+  m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -104,7 +104,7 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _EnvironmentReflections: 1
-    - _GET_SELFSHADOW: 1
+    - _GET_SELFSHADOW: 0
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
